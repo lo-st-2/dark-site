@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNKNOWN</title>
+
+<style>
+body {
+    margin:0;
+    background:black;
+    color:#00ff88;
+    font-family: "Courier New", monospace;
+    overflow:hidden;
+}
+
+canvas {
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+.container {
+    text-align:center;
+    margin-top:20vh;
+}
+
+h1 {
+    font-size:60px;
+    text-shadow:0 0 20px #00ff88;
+}
+
+p {
+    font-size:20px;
+    opacity:0.8;
+}
+
+button {
+    margin-top:40px;
+    padding:15px 40px;
+    background:transparent;
+    border:1px solid #00ff88;
+    color:#00ff88;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    background:#00ff88;
+    color:black;
+    box-shadow:0 0 20px #00ff88;
+}
+</style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="container">
+    <h1 id="title"></h1>
+    <p>Welcome to the hidden layer.</p>
+    <button onclick="enter()">ENTER</button>
+</div>
+
+<script>
+// Typing Effect
+const text = "ACCESS GRANTED";
+let i = 0;
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("title").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+    }
+}
+typeWriter();
+
+function enter(){
+    alert("You are inside.");
+}
+
+// Matrix Effect
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01";
+const fontSize = 16;
+const columns = canvas.width/fontSize;
+
+const drops = [];
+for(let x=0; x<columns; x++)
+    drops[x]=1;
+
+function draw(){
+    ctx.fillStyle="rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#00ff88";
+    ctx.font=fontSize+"px monospace";
+
+    for(let i=0;i<drops.length;i++){
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+        if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+            drops[i]=0;
+
+        drops[i]++;
+    }
+}
+setInterval(draw,33);
+</script>
+
+</body>
+</html>
