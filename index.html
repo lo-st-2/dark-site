@@ -60,7 +60,7 @@ button:hover {
 <div class="container">
     <h1 id="title"></h1>
     <p>Welcome to the hidden layer.</p>
-    <button onclick="enter()">ENTER</button>
+   <button onclick="goPage()">ENTER</button>
 </div>
 
 <script>
@@ -76,8 +76,8 @@ function typeWriter() {
 }
 typeWriter();
 
-function enter(){
-    alert("You are inside.");
+function goPage(){
+    window.location.href = "about.html";
 }
 
 // Matrix Effect
