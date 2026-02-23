@@ -1,20 +1,14 @@
-function runCommand(){
-  const input = document.getElementById("cmd");
-  const output = document.getElementById("output");
-  const value = input.value.trim();
+// Scroll to top button
+const topBtn = document.getElementById("topBtn");
 
-  if(value === "whoami"){
-    output.innerHTML += "<p>> System Administrator</p>";
+window.onscroll = function () {
+  if (document.documentElement.scrollTop > 300) {
+    topBtn.style.display = "block";
+  } else {
+    topBtn.style.display = "none";
   }
-  else if(value === "help"){
-    output.innerHTML += "<p>> Commands: whoami, help, clear</p>";
-  }
-  else if(value === "clear"){
-    output.innerHTML = "";
-  }
-  else{
-    output.innerHTML += "<p>> Unknown command</p>";
-  }
+};
 
-  input.value = "";
-}
+topBtn.onclick = function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
